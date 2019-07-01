@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>SNAP &amp; Open Summer of Code</title>
+<meta name="author" content="(Adolfo Antón Bravo)"/>
+<meta name="description" content="a ver cómo te lo cuento"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/white.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<meta name="description" content="Presentación de SNAP ">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">SNAP &amp; Open Summer of Code</h1>
+</section>
+
+<section>
+<section id="slide-sec-" data-background="./imgs/snap-background.png" data-background-transition="slide">
+<h2 id="org38e6ad1">SNAP</h2>
+<ul>
+<li>SNAP busca que los servicios de transporte cumplan con la normativa europea</li>
+<li>La vía para hacerlo es un conjunto de soluciones: ontología y software de conversión</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="org2f4278d">Qué es SNAP</h3>
+<ul>
+<li>SNAP pretende que cualquiera pueda convertir sus datos de transporte en el formato interoperable
+-Transmodel- que impulsa la UE <b>2017/1926</b></li>
+<li>Cada estado miembro debe ofrecer sus datos de transporte a través de un único punto de acceso (NAP, National
+Access Point).</li>
+<li>Por tanto todas las entidades implicadas en el sector transporte -autoridades, operadoras o gestores de
+infraestructura- han de ofrecer sus datos con el mismo formato.</li>
+<li>La entidad que ampara el formato es el CEN (Comité Europeo de Normalización).</li>
+<li>Más que un formato, Transmodel es un modelo de datos UML dividido en varios submodelos.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="org8fc1753">Qué formatos hay</h3>
+<ul>
+<li>Otros formatos estándar como NeTEx (XML) o Siri que también son estándares CEN.</li>
+<li>Google trabaja con GTFS.</li>
+<li>Otros formatos.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-" data-background="#fa2d40">
+<h2 id="org17ed962">Contexto</h2>
+<ul>
+<li>La normativa europea se aplica a todos los medios de transporte: aéreo, ferrocarril, carretera, marítimo,
+metro, tranvía, autobús lanzadera, coche compartido, coche a medida o bici compartida.</li>
+<li>En una primera etapa, diciembre 2019, se pretende ofrecer datos de horarios y de red.</li>
+<li>No hay ninguna solución que ofrezca esto dada la complejidad de Transmodel.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="orge0ab413">Beneficios</h3>
+<ul>
+<li>Reduce el tiempo de conversión de datos.</li>
+<li>Evita conocer la complejidad del proceso de conversión y de los estándares implicados.</li>
+<li>Ofrece un entorno más amigable para su implementación.</li>
+<li>Reduce el costo de inversión en una solución propia con el conocimiento asociado que requiere.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-" data-background="#fa2d40">
+<h2 id="org2ede461">Socios de SNAP</h2>
+<ul>
+<li>El desarrollo lo lidera la italiana EIT Digital junto con:</li>
+<li>Cefriel: centrado en la interoperabilidad de los datos y en la creación de una aplicación, se encuentra en
+contacto con potenciales clientes.</li>
+<li>Engineering: empresa italiana centrada en soluciones de datos y servicios compartidos.</li>
+<li>OEG-UPM, centrado en la interoperabilidad de los datos de transporte a través de ontologías web.</li>
+<li>Universidad de Génova, recogida de datos y conexión con proyectos pilotos.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-" data-background="#fa2d40">
+<h2 id="org4cf52e4">Open Summer of Code</h2>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="orgde2205a">Submódulos en los que nos centramos</h3>
+<p>
+Transmodel está dividido en varios submódulos, nos centraremos en los siguientes, empezando por los dos
+primeros:
+</p>
+
+<ul>
+<li>Viajes o <i>Journeys</i></li>
+<li>Tarifas o <i>Fares</i></li>
+<li>Entidades u <i>Organizations</i></li>
+<li>Instalaciones <i>Facilities</i></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="org019c61a">En concreto, viajes</h3>
+<ul>
+<li>Testar nuestros datos con GTFS (Google).</li>
+<li>Comenzamos con una línea de bus simple, la línea 27.</li>
+<li>Luego vamos a por una línea más compleja, la número 573.</li>
+<li>Esta complejidad nos conecta con el siguiente módulo, Tarifas.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="orgac385bb">Desarrollo ontológico LOT</h3>
+<ul>
+<li>Conocimiento del dominio.</li>
+<li>Creación de casos de uso.</li>
+<li>Generación de historias de usuario.</li>
+<li>Preguntas de competencia.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="org7ea9bfe">Search and Preliminary Analysis of Related Ontologies</h3>
+<ul>
+<li>GTFS en LOV: <a href="https://lov.linkeddata.es/dataset/lov/vocabs/gtfs">https://lov.linkeddata.es/dataset/lov/vocabs/gtfs</a></li>
+<li>Linked GTFS: <a href="https://github.com/OpenTransport/linked-gtfs">https://github.com/OpenTransport/linked-gtfs</a></li>
+<li>Linked Connections: <a href="http://semweb.mmlab.be/ns/linkedconnections">http://semweb.mmlab.be/ns/linkedconnections</a></li>
+<li>Datex: <a href="http://vocab.datex.org">http://vocab.datex.org</a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="org076e97e">Initial Identification of Common Concepts in Transmodel and in GTFS</h3>
+<ul>
+<li>Stop in GTFS: Stop Place, Flexible Stop Place, Stop Assignment, Service Pattern</li>
+<li>Route in GTFS: Route, Routing Constraint</li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-sec-" data-background="./imgs/mapping-transport-data-to-netex.png" data-background-size="1024px">
+<h2 id="org8470c40">Transmodel</h2>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="org2d08f30">Data</h3>
+<ul>
+<li>Transmodel: <a href="http://www.transmodel-cen.eu/model/part2/index.htm">http://www.transmodel-cen.eu/model/part2/index.htm</a></li>
+<li>Madrid Region Authority: <a href="http://datos.crtm.es/">http://datos.crtm.es/</a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="orgf70edb9">Analysis of Transmodel Conceptual Model regarding Journey</h3>
+<ul>
+<li>Journey focuses on Topography and Scheduling</li>
+<li>There are two submodules involved: P2 and P3</li>
+<li>P2: Network topology: routes, lines, stops, etc.</li>
+<li>P3: Timing information &amp; vehicle scheduling: blocks, vehicle services, vehicle journeys, run times, passing
+times, etc.</li>
+<li>Network topology: <a href="http://www.transmodel-cen.eu/model/part2/index.htm">http://www.transmodel-cen.eu/model/part2/index.htm</a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="org94d2166">Analysis of GTFS</h3>
+<ul>
+<li>Analysis of GTFS (General Transit Feed Specification)</li>
+<li>General study of the specification</li>
+<li>Detailed analysis of examples from <a href="http://datos.crm.es">http://datos.crm.es</a></li>
+<li>Focused on files stops.txt, routes.txt, trips.txt from GTFS</li>
+
+</ul>
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-sec-" data-background="reveal_background">
+<h2 id="org8830c43">Equipo mentor</h2>
+<ul>
+<li>David Chaves</li>
+<li>Óscar Corcho</li>
+<li>Jhon Toledo</li>
+<li>Edna Rauckaus</li>
+<li>Adolfo Antón Bravo</li>
+<li>OEG Staff!</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="org0eedf0c">¿Empezamos?</h3>
+</section>
+</section>
+</div>
+</div>
+<p> Creado por adolflow. </p>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: true,
+keyboard: true,
+overview: true,
+width: 1200,
+height: 800,
+margin: 0.10,
+minScale: 0.50,
+maxScale: 2.50,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>
